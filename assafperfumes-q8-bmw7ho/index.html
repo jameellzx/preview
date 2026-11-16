@@ -75,7 +75,9 @@ button { font: inherit; }
   .ck-ec-marquee[data-hide-desktop] { display: none; }
 }
 /* reduced motion must beat every animation rule above, including Dawn's */
-@media (prefers-reduced-motion: reduce) { .ck-ec-marquee * { animation: none !important; transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { .ck-ec-marquee .ck-inner { animation: none !important; transition: none !important; } }
+/* the strip always moves (store owner's choice), just slower when the phone asks for less motion */
+@media (prefers-reduced-motion: reduce) { .ck-ec-marquee .ck-marquee__track { animation-duration: calc(var(--ck-marquee-dur) * 1.5) !important; } }
 
 .ck-ec-marquee .ck-marquee__viewport { overflow: hidden; white-space: nowrap; direction: ltr; }
 .ck-ec-marquee .ck-marquee__track { display: inline-flex; animation: ck-marquee var(--ck-marquee-dur) linear infinite; animation-direction: var(--ck-marquee-dir); }
@@ -385,7 +387,7 @@ button { font: inherit; }
     --ck-chip-px: 12px;
     --ck-chip-py: 3px;
     --ck-num-size: 34px;
-    --ck-marquee-dur: 70s;
+    --ck-marquee-dur: 30s;
     --ck-marquee-dir: normal;
     --ck-item-gap: 30px;
     --ck-icon-size: 32px;
